@@ -21,14 +21,14 @@ import lombok.Setter;
 
 
 @Data
-@Getter @Setter
+@Getter @Setter 
 @NoArgsConstructor @AllArgsConstructor
-@Entity
-@Table(name ="destino")
+@Entity 
+@Table(name ="destino") 
 public class Destino {
-
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Long id;
 
     @Column(nullable = false)

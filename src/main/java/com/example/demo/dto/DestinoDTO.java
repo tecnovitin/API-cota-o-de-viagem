@@ -1,10 +1,16 @@
 package com.example.demo.dto;
 
 
+import java.math.BigDecimal;
+
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+@Data
+@Getter @Setter
 public class DestinoDTO {
 
     @NotBlank(message="O nome do destino é obrigatorio.")
