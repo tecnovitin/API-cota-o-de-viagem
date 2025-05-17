@@ -8,10 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.Entities.Destino;
 
-
-
-
-
 @Repository
 public interface IDestinoRepository extends JpaRepository<Destino, Long> {
 
