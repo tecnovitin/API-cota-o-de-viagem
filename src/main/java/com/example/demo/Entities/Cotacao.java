@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,10 +28,12 @@ public class Cotacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
-    @Column(nullable = false, unique = true)
+    @ManyToOne
+    @JoinColumn(nullable = false, unique = true)
     private Long IdCliente;
 
-    @Column(nullable = false, unique = true)
+    @ManyToOne
+    @JoinColumn(nullable = false, unique = true)
     private Long IdDestino;
 
     @Column(nullable = false)
