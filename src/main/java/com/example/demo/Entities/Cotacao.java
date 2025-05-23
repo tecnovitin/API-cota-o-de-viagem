@@ -13,14 +13,11 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Data
 @Entity
 @Table (name = "Cotacao")
-@Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 
 public class Cotacao {
@@ -29,12 +26,12 @@ public class Cotacao {
     private Long Id;
 
     @ManyToOne
-    @JoinColumn(nullable = false, unique = true)
-    private Long IdCliente;
+    @JoinColumn(nullable = false, unique = true, name = "cliente_id")
+    private Cliente cliente;
 
     @ManyToOne
-    @JoinColumn(nullable = false, unique = true)
-    private Long IdDestino;
+    @JoinColumn(nullable = false, unique = true, name = "destino_id")
+    private Destino destino;
 
     @Column(nullable = false)
     private LocalDateTime dataCotacao;
