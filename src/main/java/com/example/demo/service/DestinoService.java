@@ -37,17 +37,17 @@ public class DestinoService {
                 .findById(id)
                 .map(destinoMapper::toDTO);
         }
-        public DestinoDTO atualizar(Long id, DestinoDTO dto){
+        public DestinoDTO atualizar(Long id, DestinoDTO destinoDTO){
                 Destino localEx = destinoRepository
                 .findById(id)
                 .orElseThrow(() -> new RuntimeException("Destino não encontrado"));
                 
 
 
-                localEx.setNome(dto.getNome());
-                localEx.setDescricao(dto.getDescricao());
-                localEx.setLocalizacao(dto.getLocalizacao());
-                localEx.setPrecoPorPessoa(dto.getPrecoPorPessoa());
+                localEx.setNome(destinoDTO.getNome());
+                localEx.setDescricao(destinoDTO.getDescricao());
+                localEx.setLocalizacao(destinoDTO.getLocalizacao());
+                localEx.setPrecoPorPessoa(destinoDTO.getPrecoPorPessoa());
                 
                 Destino localAtualizado = destinoRepository.save(localEx);
                 

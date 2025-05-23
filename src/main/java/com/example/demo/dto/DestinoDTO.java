@@ -7,10 +7,11 @@ import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
+
+
 @Data
-@Getter @Setter
+@NoArgsConstructor
 public class DestinoDTO {
 
     @NotBlank(message="O nome do destino é obrigatorio.")
@@ -26,5 +27,6 @@ public class DestinoDTO {
     @DecimalMin(value = "0.0", inclusive = false)
     private BigDecimal precoPorPessoa;
 
+   
 
 }
