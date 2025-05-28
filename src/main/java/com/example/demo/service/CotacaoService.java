@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.CotacaoDTO;
-import com.example.demo.Entities.Cotacao;
 import com.example.demo.mapper.CotacaoMapper;
+import com.example.demo.Entities.Cotacao;
+
 import com.example.demo.repository.ICotacaoRepository;
 
 @Service

@@ -38,18 +38,11 @@ public class DestinoService {
                 .map(destinoMapper::toDTO);
         }
         public DestinoDTO atualizar(Long id, DestinoDTO destinoDTO){
-                Destino localEx = destinoRepository
-                .findById(id)
-                .orElseThrow(() -> new RuntimeException("Destino não encontrado"));
+                Destino destino = destinoRepository
+                .findById(id).map(destinoMapper::toEntity);
                 
+                Destino localAtualizado = destinoRepository.save(destino);
 
-
-                localEx.setNome(destinoDTO.getNome());
-                localEx.setDescricao(destinoDTO.getDescricao());
-                localEx.setLocalizacao(destinoDTO.getLocalizacao());
-                localEx.setPrecoPorPessoa(destinoDTO.getPrecoPorPessoa());
-                
-                Destino localAtualizado = destinoRepository.save(localEx);
                 
                 return destinoMapper.toDTO(localAtualizado);
                 
