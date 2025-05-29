@@ -37,28 +37,22 @@ public class DestinoService {
                 .findById(id)
                 .map(destinoMapper::toDTO);
         }
-        public DestinoDTO atualizar(Long id, DestinoDTO destinoDTO){
-                Destino destino = destinoRepository
-                .findById(id).map( d ->{
-                        d.setNome(destinoDTO.nome);
-                        d.setDescricao(destinoDTO.descricao);
-                        d.setLocalizacao(destinoDTO.localizacao);
-                        d.setPrecoPorPessoa(destinoDTO.precoPorPessoa);
-                        return d;
-                 }).orElseThrow(() -> {
-                        throw new RuntimeException("Destino não encontrado");
-                });
-                
-                Destino localAtualizado = destinoRepository.save(destino);
-
-                
-                return destinoMapper.toDTO(localAtualizado);
+      
                 
                 
                 
-        }
+        
         public DestinoDTO salvar(DestinoDTO dto){
                 Destino destino = destinoMapper.toEntity(dto);
                 return  destinoMapper.toDTO(destinoRepository.save(destino));
         }
-}
+
+        public DestinoDTO atualizar(Long id, DestinoDTO dto){
+              
+                        
+                        
+                return dto;
+
+                }
+        }
+

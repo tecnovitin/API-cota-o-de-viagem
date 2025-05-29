@@ -16,4 +16,6 @@ public interface IDestinoRepository extends JpaRepository<Destino, Long> {
     Optional<Destino> findByLocalizacao(String localizacao);
     
     Optional<Destino> findByPrecoPorPessoa(BigDecimal precoPorPessoa);
+
+    Destino save(Optional<Destino> destino);
 }
