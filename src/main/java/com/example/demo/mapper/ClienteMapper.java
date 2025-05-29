@@ -14,5 +14,5 @@ public interface ClienteMapper {
 
     public ClienteDTO toDTO(Cliente cot);
 
-    public List<ClienteDTO> toDTOList(List<Cliente> clientes);
+    List<ClienteDTO> toDTOList(List<Cliente> clientes);
 }

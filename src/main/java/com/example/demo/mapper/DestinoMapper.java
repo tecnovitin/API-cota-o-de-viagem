@@ -15,5 +15,5 @@ public interface DestinoMapper {
 
    public DestinoDTO toDTO(Destino des);
 
-   public List<DestinoDTO> toDTOList(List<Destino> destinos);
+    List<DestinoDTO> toDTOList(List<Destino> destinos);
 }

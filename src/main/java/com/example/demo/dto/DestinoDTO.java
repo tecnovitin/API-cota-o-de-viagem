@@ -15,17 +15,17 @@ import lombok.NoArgsConstructor;
 public class DestinoDTO {
 
     @NotBlank(message="O nome do destino é obrigatorio.")
-    private String nome;
+    public  String nome;
 
     @NotBlank(message = "A descrição é obrigatoria")
-    private  String descricao;
+    public  String descricao;
 
     @NotBlank(message = "A localização é obrigatoria")
-    private  String localizacao;
+    public  String localizacao;
     
     @NotNull(message = "O preco é obrigatorio")
     @DecimalMin(value = "0.0", inclusive = false)
-    private BigDecimal precoPorPessoa;
+    public BigDecimal precoPorPessoa;
 
    
 

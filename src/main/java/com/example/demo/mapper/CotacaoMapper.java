@@ -24,7 +24,7 @@ public interface CotacaoMapper {
     public CotacaoDTO toDTO(Cotacao cot);
 
   
-    public List<CotacaoDTO> toDTOList(List<Cotacao> cotacoes);
+     List<CotacaoDTO> toDTOList(List<Cotacao> cotacoes);
 
 
 } 
