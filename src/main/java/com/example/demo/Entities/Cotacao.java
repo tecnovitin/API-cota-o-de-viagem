@@ -26,7 +26,7 @@ public class Cotacao {
     private Long Id;
 
     @ManyToOne
-    @JoinColumn(nullable = false, unique = true, name = "cliente_id")
+    @JoinColumn(nullable = false, name = "cliente_id")
     private Cliente cliente;
 
     @ManyToOne
