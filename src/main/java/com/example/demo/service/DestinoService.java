@@ -49,9 +49,15 @@ public class DestinoService {
 
         public DestinoDTO atualizar(Long id, DestinoDTO dto){
               
+                        Destino destino = destinoRepository.findById(id).map(existingDestino -> {
+                            existingDestino.setNome(dto.nome);
+                            existingDestino.setDescricao(dto.descricao);
+                            existingDestino.setLocalizacao(dto.localizacao);
+                            existingDestino.setPrecoPorPessoa(dto.precoPorPessoa);
+                            return destinoRepository.save(existingDestino);
+                        }).orElseThrow(() -> new RuntimeException("Destino não encontrado com o id: " + id));
                         
-                        
-                return dto;
+                return destinoMapper.toDTO(destino);
 
                 }
         }

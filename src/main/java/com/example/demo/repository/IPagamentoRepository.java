@@ -11,7 +11,7 @@ import com.example.demo.Entities.Pagamento;
 @Repository
 public interface IPagamentoRepository extends JpaRepository<Pagamento, Long> {
 
-    Optional<Pagamento> findByRegistroPagamento(BigDecimal registro_pagamento);
+    Optional<Pagamento> findByvalorPago(BigDecimal registro_pagamento);
 
     Optional<Pagamento> findByStatus(String status);
 }
