@@ -13,18 +13,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PagamentoDTO {
 
-    public Long id;
+    private Long id;
 
     @NotNull(message = "O valor é obrigatório")
     @DecimalMin(value = "0.0", inclusive = false)
-    public BigDecimal valor;
+    private BigDecimal valorPago;
 
-    @NotBlank(message = "O método de pagamento é obrigatório")
-    public String metodoPagamento;
+    @NotBlank(message = "O status é obrigatório")
+    private String status;
 
     @NotNull(message = "A data do pagamento é obrigatória")
-    public LocalDateTime dataPagamento;
+    private LocalDateTime dataPagamento;
 
-    @NotNull(message = "O id da reserva é obrigatório")
-    public Long reservaId;
+    @NotNull(message = "O id da cotação é obrigatório")
+    private Long cotacaoId;
 }
