@@ -1,33 +1,52 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.DescontoDTO;
+import com.example.demo.service.DescontoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/descontos")
+@RequestMapping("/api/descontos")
 public class DescontoController {
 
-    private List<DescontoDTO> descontos = new ArrayList<>();
+    @Autowired
+    private DescontoService descontoService;
 
-    @GetMapping
-    public List<DescontoDTO> listarTodos() {
-        return descontos;
-    }
-
+    // 1 - Registrar Desconto
     @PostMapping
-    public DescontoDTO criar(@RequestBody DescontoDTO dto) {
-        descontos.add(dto);
-        return dto;
+    public DescontoDTO registrarDesconto(@RequestBody DescontoDTO dto) {
+        return descontoService.registrarDesconto(dto);
     }
 
+    // 2 - Listar Descontos
+    @GetMapping
+    public List<DescontoDTO> listarDescontos() {
+        return descontoService.listarDescontos();
+    }
+
+    // 3 - Detalhar Desconto
     @GetMapping("/{id}")
     public DescontoDTO buscarPorId(@PathVariable Long id) {
-        return descontos.stream()
-                .filter(d -> d.getId().equals(id))
-                .findFirst()
-                .orElse(null);
+        return descontoService.buscarPorId(id);
+    }
+
+    // 4 - Listar Descontos de uma Cotação
+    @GetMapping("/cotacao/{cotacaoId}")
+    public List<DescontoDTO> listarPorCotacao(@PathVariable Long cotacaoId) {
+        return descontoService.listarPorCotacao(cotacaoId);
+    }
+
+    // 5 - Atualizar Desconto
+    @PutMapping("/{id}")
+    public DescontoDTO atualizar(@PathVariable Long id, @RequestBody DescontoDTO dto) {
+        return descontoService.atualizar(id, dto);
+    }
+
+    // 6 - Remover Desconto
+    @DeleteMapping("/{id}")
+    public void deletar(@PathVariable Long id) {
+        descontoService.deletar(id);
     }
 }

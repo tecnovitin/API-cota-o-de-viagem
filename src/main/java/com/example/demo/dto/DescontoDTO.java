@@ -1,5 +1,7 @@
 package com.example.demo.dto;
 
+import java.math.BigDecimal;
+
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -12,14 +14,13 @@ public class DescontoDTO {
 
     private Long id;
 
-    @NotBlank(message = "O nome do desconto é obrigatório.")
-    private String nome;
+    @NotNull(message = "O id da cotação e obrigatorio.")
+    private Long cotacaoId;
 
-    @NotNull(message = "O percentual é obrigatório.")
-    @DecimalMin(value = "0.0", inclusive = false, message = "O percentual deve ser maior que zero.")
-    private Double percentual;
+    @NotNull(message = "O valor do desconto e obrigatório.")
+    @DecimalMin(value = "0.0", inclusive = false, message = "O valor do desconto deve ser maior que zero.")
+    private BigDecimal valorDesconto;
 
-    @NotNull(message = "O valor é obrigatório.")
-    @DecimalMin(value = "0.0", inclusive = false, message = "O valor deve ser maior que zero.")
-    private Double valor;
+    @NotBlank(message = "A descrição e obrigatoria.")
+    private String descricao;
 }
