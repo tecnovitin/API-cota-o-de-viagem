@@ -11,10 +11,9 @@ import com.example.demo.dto.DescontoDTO;
 @Mapper(componentModel = "spring")
 public interface DescontoMapper {
 
-    @Mapping(source = "cotacao.id", target = "cotacaoId")
+   
     DescontoDTO toDTO(Desconto desconto);
 
-    @Mapping(source = "cotacaoId", target = "cotacao.id")
     Desconto toEntity(DescontoDTO dto);
 
     List<DescontoDTO> toDTOList(List<Desconto> descontos);

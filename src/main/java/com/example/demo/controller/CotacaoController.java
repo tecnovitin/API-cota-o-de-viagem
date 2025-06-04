@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.CotacaoDTO;
+import com.example.demo.dto.DescontoDTO;
 import com.example.demo.service.CotacaoService;
 import com.example.demo.service.Utils.ApiResponse;
 import com.example.demo.service.Utils.ErrorResponse;
@@ -33,6 +35,10 @@ public class CotacaoController {
     @Autowired
     private CotacaoService cotacaoServise;
 
+    @GetMapping
+    public List<CotacaoDTO> ListarCotacao() {
+        return cotacaoServise.listarTodos();
+    }
     @Operation(summary = "Lista todos os usuários", description = "Retorna uma lista com todos as cotações")
     @GetMapping("/{id}")
     public ResponseEntity<CotacaoDTO> buscarPorId(@PathVariable Long id) {
