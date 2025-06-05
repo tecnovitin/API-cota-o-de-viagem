@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -7,9 +9,11 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.Entities.Cotacao;
 import com.example.demo.Entities.Desconto;
 import com.example.demo.dto.DescontoDTO;
 import com.example.demo.mapper.DescontoMapper;
+import com.example.demo.repository.ICotacaoRepository;
 import com.example.demo.repository.IDescontoRepository;
 
 @Service
@@ -20,11 +24,21 @@ public class DescontoService {
 
     @Autowired
     private DescontoMapper descontoMapper;
-
+   
+    @Autowired
+        private ICotacaoRepository cotacaoRepository;
+    
     // registra desconto
     public DescontoDTO registrarDesconto(DescontoDTO dto) {
         Desconto desconto = descontoMapper.toEntity(dto);
-        desconto = descontoRepository.save(desconto);
+        Cotacao cotacao = cotacaoRepository.findById(dto.getCotacaoId())
+                .orElseThrow(() -> new RuntimeException("Cotação não encontrada com o ID: " + dto.getCotacaoId()));        
+        desconto.setCotacao(cotacao);
+        desconto.setDataAplicacao(LocalDateTime.now());    
+        
+                desconto = descontoRepository.save(desconto);
+                
+                desconto.setValorDesconto(calcularDesconto(desconto.getCotacao(), desconto.getCotacao().getValorTotal()));
         return descontoMapper.toDTO(desconto);
     }
 
@@ -66,4 +80,25 @@ public class DescontoService {
     public void deletar(Long id) {
         descontoRepository.deleteById(id);
     }
+
+    private BigDecimal calcularDesconto (Cotacao cotacao, BigDecimal valorTotal) {
+            BigDecimal descontoTotal = BigDecimal.ZERO;
+            String destino = cotacao.getDestino().getNome();
+           if (destino.equalsIgnoreCase("Fernando de Noronha") ||
+                destino.equalsIgnoreCase("Rio de Janeiro") ||
+                destino.equalsIgnoreCase("Maceió") ||
+                destino.equalsIgnoreCase("Maceio")) {
+
+                    descontoTotal = descontoTotal.add(valorTotal.multiply(new BigDecimal("0.10"))); 
+
+                }
+
+                int mes = cotacao.getDataCotacao().getMonthValue();
+                  if(mes >= 4 && mes <= 6){
+                        descontoTotal = descontoTotal.add(valorTotal.multiply(new BigDecimal("0.15")));
+                    }
+            return descontoTotal;
+        };
+
+
 }

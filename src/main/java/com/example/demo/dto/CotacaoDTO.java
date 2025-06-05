@@ -1,9 +1,7 @@
 package com.example.demo.dto;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -19,20 +17,19 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CotacaoDTO {
     
+    @NotNull(message = "O ID do cliente é obrigatório")
     private Long clienteId;
-    private Long destinoId;
 
+    @NotNull(message = "O ID do destino é obrigatório")
+    private Long destinoId;
+   
     @NotNull(message = "A data da cotação é obrigatória")
     @Future(message = "A data da cotação deve ser no futuro")
-    public LocalDateTime dataCotacao;
-
+    private LocalDateTime dataCotacao;
+    
     @NotNull(message = "A quantidade de pessoas é obrigatório")
     @Min(value = 1, message = "O número de pessoas deve ser maior que zero")
     public Integer numeroDePessoas;
-
-    @NotNull(message = "O valor da Viagem é obrigatória")
-    @DecimalMin(value = "0.0", inclusive = false, message = "O valor total deve ser maior que zero")
-    public BigDecimal valorTotal;
 
     @NotBlank(message = "O status é obrigatório")
     @Pattern(regexp = "Pendente|Aprovada|Rejeitada", message = "Status inválido. Valores permitidos: Pendente, Aprovada ou Rejeitada")

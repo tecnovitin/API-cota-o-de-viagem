@@ -17,14 +17,14 @@ public class PagamentoDTO {
 
     @NotNull(message = "O valor é obrigatório")
     @DecimalMin(value = "0.0", inclusive = false)
-    private BigDecimal valorPago;
+    public BigDecimal valorPago;
 
     @NotBlank(message = "O status é obrigatório")
-    private String status;
+    public String status;
 
     @NotNull(message = "A data do pagamento é obrigatória")
-    private LocalDateTime dataPagamento;
+    public LocalDateTime dataPagamento;
 
     @NotNull(message = "O id da cotação é obrigatório")
-    private Long cotacaoId;
+    public Long cotacaoId;
 }

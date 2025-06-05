@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 public class Cotacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(nullable = false, name = "cliente_id")
