@@ -30,7 +30,7 @@ public class Cotacao {
     private Cliente cliente;
 
     @ManyToOne
-    @JoinColumn(nullable = false, unique = true, name = "destino_id")
+    @JoinColumn(nullable = false, name = "destino_id")
     private Destino destino;
 
     @Column(nullable = false)

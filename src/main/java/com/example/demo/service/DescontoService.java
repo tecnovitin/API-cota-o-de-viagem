@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -34,8 +33,9 @@ public class DescontoService {
         Cotacao cotacao = cotacaoRepository.findById(dto.getCotacaoId())
                 .orElseThrow(() -> new RuntimeException("Cotação não encontrada com o ID: " + dto.getCotacaoId()));        
         desconto.setCotacao(cotacao);
-        desconto.setDataAplicacao(LocalDateTime.now());    
         
+        BigDecimal valorCalculadoDoDesconto = calcularDesconto(cotacao, cotacao.getValorTotal());
+        desconto.setValorDesconto(valorCalculadoDoDesconto);
                 desconto = descontoRepository.save(desconto);
                 
                 desconto.setValorDesconto(calcularDesconto(desconto.getCotacao(), desconto.getCotacao().getValorTotal()));
