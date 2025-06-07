@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -33,11 +34,11 @@ public class DescontoService {
         Cotacao cotacao = cotacaoRepository.findById(dto.getCotacaoId())
                 .orElseThrow(() -> new RuntimeException("Cotação não encontrada com o ID: " + dto.getCotacaoId()));        
         desconto.setCotacao(cotacao);
-        
+     
         BigDecimal valorCalculadoDoDesconto = calcularDesconto(cotacao, cotacao.getValorTotal());
         desconto.setValorDesconto(valorCalculadoDoDesconto);
                 desconto = descontoRepository.save(desconto);
-                
+                desconto.setDataDesconto(LocalDateTime.now()); 
                 desconto.setValorDesconto(calcularDesconto(desconto.getCotacao(), desconto.getCotacao().getValorTotal()));
         return descontoMapper.toDTO(desconto);
     }
@@ -63,17 +64,20 @@ public class DescontoService {
                 .collect(Collectors.toList());
     }
 
-    // atualiza desconto
-    public DescontoDTO atualizar(Long id, DescontoDTO dto) {
+    
+ public DescontoDTO atualizar(Long id, DescontoDTO dto) {
         Optional<Desconto> descontoOpt = descontoRepository.findById(id);
         if (descontoOpt.isPresent()) {
             Desconto desconto = descontoOpt.get();
-            desconto.setValorDesconto(dto.getValorDesconto());
+
+            
             desconto.setDescricao(dto.getDescricao());
+
             desconto = descontoRepository.save(desconto);
             return descontoMapper.toDTO(desconto);
         }
-        return null;
+       
+        throw new RuntimeException("Desconto não encontrado com o id: " + id);
     }
 
     // deleta desconto

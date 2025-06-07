@@ -1,8 +1,10 @@
 package com.example.demo.dto;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import jakarta.validation.constraints.DecimalMin;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -17,9 +19,9 @@ public class DescontoDTO {
     @NotNull(message = "O id da cotação e obrigatorio.")
     public Long cotacaoId;
 
-    @NotNull(message = "O valor do desconto e obrigatório.")
-    @DecimalMin(value = "0.0", inclusive = false, message = "O valor do desconto deve ser maior que zero.")
-    public BigDecimal valorDesconto;
+ 
+    @NotNull(message = "A data do desconto é obrigatória")
+    private LocalDateTime dataDesconto;
 
     @NotBlank(message = "A descrição e obrigatoria.")
     public String descricao;

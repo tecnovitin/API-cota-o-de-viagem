@@ -37,7 +37,7 @@ public class Desconto {
     private BigDecimal valorDesconto;
 
     @Column(nullable = false)
-    private LocalDateTime dataAplicacao;
+    private LocalDateTime dataDesconto;
 
     @Column(nullable = false)
     private String descricao;
