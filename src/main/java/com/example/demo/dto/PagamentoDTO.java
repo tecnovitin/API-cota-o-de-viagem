@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PagamentoDTO {
 
-    private Long id;
+    
 
     @NotNull(message = "O valor é obrigatório")
     @DecimalMin(value = "0.0", inclusive = false)

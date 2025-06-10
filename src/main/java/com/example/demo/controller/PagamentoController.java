@@ -17,7 +17,7 @@ import com.example.demo.dto.PagamentoDTO;
 import com.example.demo.service.PagamentoService;
 
 @RestController
-@RequestMapping("/pagamentos")
+@RequestMapping("api/pagamentos")
 public class PagamentoController {
     @Autowired
     private PagamentoService pagamentoService;

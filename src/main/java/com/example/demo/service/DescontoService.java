@@ -29,19 +29,21 @@ public class DescontoService {
         private ICotacaoRepository cotacaoRepository;
     
     // registra desconto
-    public DescontoDTO registrarDesconto(DescontoDTO dto) {
-        Desconto desconto = descontoMapper.toEntity(dto);
-        Cotacao cotacao = cotacaoRepository.findById(dto.getCotacaoId())
-                .orElseThrow(() -> new RuntimeException("Cotação não encontrada com o ID: " + dto.getCotacaoId()));        
-        desconto.setCotacao(cotacao);
-     
-        BigDecimal valorCalculadoDoDesconto = calcularDesconto(cotacao, cotacao.getValorTotal());
-        desconto.setValorDesconto(valorCalculadoDoDesconto);
-                desconto = descontoRepository.save(desconto);
-                desconto.setDataDesconto(LocalDateTime.now()); 
-                desconto.setValorDesconto(calcularDesconto(desconto.getCotacao(), desconto.getCotacao().getValorTotal()));
-        return descontoMapper.toDTO(desconto);
-    }
+   public DescontoDTO registrarDesconto(DescontoDTO dto) {
+    Desconto desconto = descontoMapper.toEntity(dto);
+    Cotacao cotacao = cotacaoRepository.findById(dto.getCotacaoId())
+            .orElseThrow(() -> new RuntimeException("Cotação não encontrada com o ID: " + dto.getCotacaoId()));
+    desconto.setCotacao(cotacao);
+
+    desconto.setDataDesconto(LocalDateTime.now());
+    BigDecimal valorCalculadoDoDesconto = calcularDesconto(cotacao, cotacao.getValorTotal());
+    desconto.setValorDesconto(valorCalculadoDoDesconto);
+
+   
+    desconto = descontoRepository.save(desconto);
+    
+    return descontoMapper.toDTO(desconto);
+}
 
     // Lista tods descontos
     public List<DescontoDTO> listarDescontos() {
