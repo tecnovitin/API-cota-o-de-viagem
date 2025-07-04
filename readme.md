@@ -1,7 +1,7 @@
 # API de Cotação de Viagens
 
 
-## SobreOProjeto
+## Sobre o Projeto
 
 Esta é uma API RESTful para um sistema de cotação de viagens. O projeto foi desenvolvido com foco em boas práticas de desenvolvimento, utilizando o ecossistema Spring para criar uma aplicação robusta, bem estruturada e com código limpo.
 
